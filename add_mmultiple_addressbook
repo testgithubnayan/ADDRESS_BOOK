@@ -1,0 +1,138 @@
+package UC6;
+
+import java.util.ArrayList;
+import java.util.Scanner;
+
+public class AddressBook {
+    Scanner sc = new Scanner(System.in);
+
+    ArrayList<ContactDetails> list = new ArrayList<>();
+    ArrayList<AddressBookName> addressBookList = new ArrayList<>();
+
+    public void addDetails() {
+        ContactDetails person = new ContactDetails();
+
+        System.out.println("Enter First Name : ");
+        person.setFirstName(sc.nextLine());
+
+        System.out.println("Enter Last Name : ");
+        person.setLastName(sc.nextLine());
+
+        System.out.println("Enter Address : ");
+        person.setAddress(sc.nextLine());
+
+        System.out.println("Enter City Name : ");
+        person.setCity(sc.nextLine());
+
+        System.out.println("Enter State Name : ");
+        person.setState(sc.nextLine());
+
+        System.out.println("Enter Zip Code : ");
+        person.setZip(sc.nextLine());
+
+        System.out.println("Enter Phone Number : ");
+        person.setPhoneNumber(sc.nextLine());
+
+        System.out.println("Enter Email Id : ");
+        person.setEmail(sc.nextLine());
+
+        list.add(person);
+        System.out.println(person);
+        System.out.println("Contact added successfully");
+    }
+
+    public void editDetails() {
+
+        System.out.println("Enter First Name of a Person to Edit:  ");
+        String editName = sc.nextLine();
+        for (ContactDetails contact : list) {
+            if (contact.getFirstName().equals(editName)) {
+
+                System.out.println("Enter New First Name : ");
+                contact.setFirstName(sc.nextLine());
+
+                System.out.println("Enter New Last Name : ");
+                contact.setLastName(sc.nextLine());
+
+                System.out.println("Enter New Address : ");
+                contact.setAddress(sc.nextLine());
+
+                System.out.println("Enter New City Name : ");
+                contact.setCity(sc.nextLine());
+
+                System.out.println("Enter New State Name : ");
+                contact.setState(sc.nextLine());
+
+                System.out.println("Enter New Zip Code : ");
+                contact.setZip(sc.nextLine());
+
+                System.out.println("Enter New Phone Number : ");
+                contact.setPhoneNumber(sc.nextLine());
+
+                System.out.println("Enter New Email Id : ");
+                contact.setEmail(sc.nextLine());
+
+                System.out.println(contact);
+                System.out.println("Contact Edited Successfully");
+            } else {
+                System.out.println("Please Enter Valid First Name!");
+            }
+        }
+    }
+
+    public void deleteDetails() {
+
+        System.out.println("Number of Contacts Stored : "+ list.size());
+        if (list.isEmpty()) {
+            System.out.println("There is No Contact Available");
+        } else {
+            System.out.println("Enter First Name of a Person to Delete : ");
+            String deleteName = sc.nextLine();
+            for (ContactDetails contact : list) {
+                if (contact.getFirstName().equals(deleteName)) {
+                    list.remove(contact);
+                    System.out.println("Contact Deleted Successfully");
+                    break;
+                }
+            }
+        }
+    }
+
+    public void showDetails() {
+
+        System.out.println("Number of Contacts Stored : "+ list.size());
+        if (list.isEmpty()) {
+            System.out.println("There is No Contact Available");
+        } else {
+            for (ContactDetails contactDetails : list) {
+                System.out.println(contactDetails);
+            }
+        }
+    }
+
+    public void newAddressBook() {
+        System.out.println("Enter AddressBook Name");
+        String addressBookName = sc.nextLine();
+        AddressBookName address = new AddressBookName(addressBookName);
+        addressBookList.add(address);
+        System.out.println(addressBookList.toString());
+    }
+
+    public void openAddressBook() {
+        displayAddressBook();
+        System.out.println("Enter Name To Open AddressBook");
+        String addressBookName = sc.nextLine();
+        for (AddressBookName addressBook : addressBookList) {
+            if (addressBookName.equals(addressBook.getAddressBookName())) {
+                System.out.println("AddressBook ->"+addressBook.getAddressBookName()+"<- is Opened");
+            }
+        }
+    }
+
+    public void displayAddressBook() {
+        System.out.println("List of all AddressBook");
+        for (AddressBookName addressBookName : addressBookList) {
+            System.out.println(addressBookName);
+        }
+    }
+}
